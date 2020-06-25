@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -6,6 +8,11 @@ const mongoose = require("mongoose");
 const stripe = require("stripe")("sk_live_5r6Fu8m91qo2dHsfLO6JZVLj00xe5Pa9eB", {
   apiVersion: "",
 });
+// URL CONFIGS
+let BASE_URL = process.env.DEVELOPMENT_URL;
+if (process.env.MODE === "PROD") {
+  BASE_URL = process.env.PRODUCTION_URL;
+}
 
 const Newsletter = require("./models/newsletter");
 const Payment = require("./models/payment");
@@ -40,7 +47,7 @@ app.post("/image-upload", (req, res) => {
   form.on("file", function (name, file) {
     res.json({
       status: 200,
-      path: `https://newsletter-backend.herokuapp.com/uploads/${file.name}`,
+      path: `${BASE_URL}/uploads/${file.name}`,
     });
   });
 });
