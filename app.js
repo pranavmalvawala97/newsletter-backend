@@ -10,7 +10,7 @@ const stripe = require("stripe")("sk_live_5r6Fu8m91qo2dHsfLO6JZVLj00xe5Pa9eB", {
 const Newsletter = require("./models/newsletter");
 const Payment = require("./models/payment");
 
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
 const app = express();
 
