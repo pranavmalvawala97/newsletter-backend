@@ -40,7 +40,7 @@ app.post("/image-upload", (req, res) => {
   form.on("file", function (name, file) {
     res.json({
       status: 200,
-      path: `http://localhost:9000/uploads/${file.name}`,
+      path: `https://newsletter-backend.herokuapp.com/uploads/${file.name}`,
     });
   });
 });
